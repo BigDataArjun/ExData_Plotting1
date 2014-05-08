@@ -1,0 +1,8 @@
+powerCon <- read.table("../Data/household_power_consumption.txt", sep=";", skip = 66637, nrows = 2880, col.name=c("Date","Time","Global_active_power","Global_reactive_power","Voltage","Global_intensity","Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+modDate <- strptime(paste(powerCon$Date, powerCon$Time), "%d/%m/%Y %H:%M:%S")
+png("plot3.png", width = 480, height = 480, units = "px", pointsize = 12, bg = "transparent")
+plot(modDate,powerCon$Sub_metering_1, "l",col="black",xlab="",ylab="Energy sub metering")
+lines(modDate,powerCon$Sub_metering_2, "l", col="red")
+lines(modDate,powerCon$Sub_metering_3, "l",col="blue")
+legend("topright",lty=c(1), col = c("black","red","blue"),legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+dev.off()
